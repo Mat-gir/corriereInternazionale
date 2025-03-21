@@ -5,6 +5,7 @@ public class Main {
         Spedizione nuovaSpedizione = new Spedizione(cliente,"via dei matti 0","Genova","Italia","3397585442");
         corriereInterzionale.aggiungiCliente(cliente);
         corriereInterzionale.aggiungiSpedizione(nuovaSpedizione);
+        corriereInterzionale.ricercaSpedizione(nuovaSpedizione.getID());
     }
 
 

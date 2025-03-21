@@ -9,8 +9,8 @@ public class Corriere {
     public Corriere() {
     }
 
-    Map<String, Spedizione> spedizioni = new HashMap<>();
-    List<Cliente> clienti = new ArrayList<>();
+    private Map<String, Spedizione> spedizioni = new HashMap<>();
+    private Map<String,Cliente> clienti = new HashMap<>();
 
 
 
@@ -29,7 +29,11 @@ public class Corriere {
 
     public void aggiungiCliente(Cliente cliente){
         if(cliente.getAbbonamento()){
-            clienti.add(cliente);
+            if(!clienti.containsKey(cliente.getNome())){
+                clienti.put(cliente.getNome(), cliente);
+                System.out.println("cliente inserito");
+
+            }
         } else {
             throw new IllegalArgumentException("Il cliente non è abbonato");
         }
@@ -50,6 +54,34 @@ public class Corriere {
 
     public void ricezione(Spedizione spedizione){
         System.out.println(spedizione.toString() + " è stato ritirato");
+    }
+
+    public void rimuoviSpedizione(Spedizione spedizione){
+        if(!spedizioni.containsKey(spedizione.getID())){
+            spedizioni.remove(spedizione.getID(), spedizione);
+            System.out.println("Spedizione rimossa dall'archivio");
+        }
+    }
+
+    public void rimuoviCliente(Cliente cliente){
+        if(!clienti.containsKey(cliente.getNome())){
+            clienti.remove(cliente.getNome(), cliente);
+            System.out.println("cliente rimossa dall'archivio");
+        }
+    }
+
+    public void ricercaSpedizione(String nominativo){
+        if(spedizioni.containsKey(nominativo)){
+            System.out.println("Spedizione presente nell archivio:");
+            System.out.println(spedizioni.get(nominativo).toString());
+        }
+    }
+
+    public void ricercaCliente(String nominativo){
+        if(clienti.containsKey(nominativo)){
+            System.out.println("Cliente presente nell archivio:");
+            System.out.println(clienti.get(nominativo).toString());
+        }
     }
 
 }

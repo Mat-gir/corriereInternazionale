@@ -25,9 +25,13 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nome='" + nome + '\'' +
-                ", abbonamento=" + abbonamento +
-                '}';
+        String statoAbbonamento;
+        if(abbonamento == true){
+            statoAbbonamento = "attivo";
+        }else{
+            statoAbbonamento = "scaduto";
+        }
+        return "nome: " + nome  +
+                ", abbonamento: " + statoAbbonamento;
     }
 }
