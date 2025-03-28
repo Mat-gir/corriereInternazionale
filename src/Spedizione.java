@@ -1,17 +1,21 @@
 public class Spedizione {
     private String ID;
     private Cliente cliente;
+    private String destinatario;
     private String indirizzo;
     private String città;
     private String nazione;
     private String telefono;
+    private String CAP;
 
-    public Spedizione(Cliente cliente, String indirizzo, String città, String nazione, String telefono) {
+    public Spedizione(Cliente cliente, String indirizzo, String città, String nazione, String telefono,String CAP,String destinatario) {
         this.cliente = cliente;
         this.indirizzo = indirizzo;
         this.città = città;
         this.nazione = nazione;
         this.telefono = telefono;
+        this.CAP = CAP;
+        this.destinatario = destinatario;
     }
 
 
@@ -66,7 +70,8 @@ public class Spedizione {
     @Override
     public String toString() {
         return "ID: " + ID +"\n" +
-                "Cliente: " + cliente +"\n" +
+                "Mittente: " + cliente +"\n" +
+                "Destinarario: "+ destinatario+"\n"+
                 "Nazione: " +nazione +"\n" +
                 "Città: " +città + "\n" +
                 "Indirizzo: " +indirizzo +"\n"+

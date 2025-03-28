@@ -1,49 +1,49 @@
-import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Corriere {
 
-    public Corriere() {
-    }
+    String id = "ID";
+    int nID = 0;
+
+    public Corriere() {}
 
     private Map<String, Spedizione> spedizioni = new HashMap<>();
     private Map<String,Cliente> clienti = new HashMap<>();
 
 
 
+
+    //METODI SPEDIZIONE
+
+    public Map<String, Spedizione> getSpedizioni() {
+        return spedizioni;
+    }
+
+    public void setSpedizioni(Map<String, Spedizione> spedizioni) {
+        this.spedizioni = spedizioni;
+    }
+
     public void aggiungiSpedizione(Spedizione spedizione) {
-        spedizione.setID(assegnaId(spedizione.getCliente(),spedizione));
+
+        spedizione.setID(assegnaId(spedizione.getCliente(), spedizione));
         if(spedizione.getCliente().getAbbonamento()) {
             if(!spedizioni.containsKey(spedizione.getID())){
                 spedizioni.put(spedizione.getID(), spedizione);
                 ricezione(spedizione);
 
+            }else{
+                System.out.println("Spedizione già registrata");
             }
         } else {
-            throw new IllegalArgumentException("Il cliente non è abbonato");
+            System.out.println("Il cliente non è abbonato");
         }
+
     }
 
-    public void aggiungiCliente(Cliente cliente){
-        if(cliente.getAbbonamento()){
-            if(!clienti.containsKey(cliente.getNome())){
-                clienti.put(cliente.getNome(), cliente);
-                System.out.println("cliente inserito");
+    
 
-            }
-        } else {
-            throw new IllegalArgumentException("Il cliente non è abbonato");
-        }
-    }
-
-
-    String id = "ID";
-    int nID = 0;
-
-    public String assegnaId(Cliente cliente,Spedizione spedizione){
+    public String assegnaId(Cliente cliente, Spedizione spedizione){
 
         String idAssegnato = id + nID;
         nID++;
@@ -53,7 +53,7 @@ public class Corriere {
 
 
     public void ricezione(Spedizione spedizione){
-        System.out.println(spedizione.toString() + " è stato ritirato");
+        System.out.print(spedizione.toString() + " è stato ritirato");
     }
 
     public void rimuoviSpedizione(Spedizione spedizione){
@@ -63,17 +63,55 @@ public class Corriere {
         }
     }
 
-    public void rimuoviCliente(Cliente cliente){
-        if(!clienti.containsKey(cliente.getNome())){
-            clienti.remove(cliente.getNome(), cliente);
-            System.out.println("cliente rimossa dall'archivio");
-        }
-    }
+    
 
     public void ricercaSpedizione(String nominativo){
         if(spedizioni.containsKey(nominativo)){
             System.out.println("Spedizione presente nell archivio:");
             System.out.println(spedizioni.get(nominativo).toString());
+        }
+    }
+
+    public void ricercaSpedizioneCliente(Cliente cliente){
+        if(spedizioni.containsValue(cliente)){
+            
+        }else{
+            System.out.println("Non esiste un pacco  registrato a questo mittente");
+        };
+
+    }
+
+    public void ricercaSpedizioneDestinatario(String destinatario){
+        if(spedizioni.containsValue(destinatario)){
+            
+        }else{
+            System.out.println("Non esiste un pacco registrato a questo destinatario");
+        };
+
+    }
+
+    public void aggiornaSpedizione(String nuovoIndirizzo, Spedizione spedizione){
+        if(spedizioni.containsKey(spedizione.getID())){
+            spedizioni.get(spedizione.getID()).setIndirizzo(nuovoIndirizzo);
+        }else{
+            System.out.println("La spedizione che si sta cercando di modificare non è in elenco");
+        }
+    }
+
+    
+
+
+    //METODI CLIENTI
+
+    public void aggiungiCliente(Cliente cliente){
+        if(cliente.getAbbonamento()){
+            if(!clienti.containsKey(cliente.getNome())){
+                clienti.put(cliente.getNome(), cliente);
+                System.out.println("cliente inserito");
+
+            }
+        } else {
+            System.out.println("Il cliente non è abbonato");
         }
     }
 
@@ -84,4 +122,20 @@ public class Corriere {
         }
     }
 
+    public Map<String, Cliente> getClienti() {
+        return clienti;
+    }
+
+    public void setClienti(Map<String, Cliente> clienti) {
+        this.clienti = clienti;
+    }
+
+    
+
+    public void rimuoviCliente(Cliente cliente){
+        if(!clienti.containsKey(cliente.getNome())){
+            clienti.remove(cliente.getNome(), cliente);
+            System.out.println("cliente rimossa dall'archivio");
+        }
+    }
 }

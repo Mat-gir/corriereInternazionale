@@ -31,7 +31,6 @@ public class Cliente {
         }else{
             statoAbbonamento = "scaduto";
         }
-        return "nome: " + nome  +
-                ", abbonamento: " + statoAbbonamento;
+        return "nome: " + nome  + ", abbonamento: " + statoAbbonamento;
     }
 }
