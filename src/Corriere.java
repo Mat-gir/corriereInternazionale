@@ -57,9 +57,9 @@ public class Corriere {
         System.out.print(spedizione.toString() + " è stato ritirato");
     }
 
-    public void rimuoviSpedizione(Spedizione spedizione){
-        if(!spedizioni.containsKey(spedizione.getID())){
-            spedizioni.remove(spedizione.getID(), spedizione);
+    public void rimuoviSpedizione(String id){
+        if(!spedizioni.containsKey(id)){
+            spedizioni.remove(id);
             System.out.println("Spedizione rimossa dall'archivio");
         }
     }
@@ -93,9 +93,19 @@ public class Corriere {
         }
     }
 
-    public void aggiornaSpedizione(String nuovoIndirizzo, Spedizione spedizione){
-        if(spedizioni.containsKey(spedizione.getID())){
-            spedizioni.get(spedizione.getID()).setIndirizzo(nuovoIndirizzo);
+    public void ricercaSpedizioneCAP(String CAP){
+        Iterator<Map.Entry<String, Spedizione>> iterator = spedizioni.entrySet().iterator();
+        while(iterator.hasNext()){
+            Spedizione spedizione = iterator.next().getValue();
+            if(spedizione.getCAP().equals(CAP)){
+                System.out.println(spedizione.toString());
+            }
+        }
+    }
+
+    public void aggiornaSpedizione(String nuovoIndirizzo, String id){
+        if(spedizioni.containsKey(id)){
+            spedizioni.get(id).setIndirizzo(nuovoIndirizzo);
         }else{
             System.out.println("La spedizione che si sta cercando di modificare non è in elenco");
         }

@@ -7,7 +7,22 @@ public class Main {
     public static void main(String[] args) {
         Corriere corriereInterzionale = new Corriere();
         popolaArchivio(corriereInterzionale);
+
         ordineAlfabetico(corriereInterzionale);
+
+        corriereInterzionale.ricercaSpedizioneDestinatario("Vincenzo Tempeera");
+
+        Cliente cliente = new Cliente("Piero Ciampi",true);
+        corriereInterzionale.ricercaSpedizioneCliente(cliente);
+
+        corriereInterzionale.ricercaSpedizioneCAP("16100");
+
+        corriereInterzionale.aggiornaSpedizione("via gallo 71", "ID0");
+
+        corriereInterzionale.rimuoviCliente(cliente);
+
+        corriereInterzionale.rimuoviSpedizione("ID0");
+
     }
 
     public static void ordineAlfabetico(Corriere corriereInterzionale) {

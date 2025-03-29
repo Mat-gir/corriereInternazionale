@@ -75,6 +75,14 @@ public class Spedizione {
         this.destinatario = destinatario;
     }
 
+    public String getCAP(){
+        return CAP;
+    }
+
+    public void setCAP(String CAP){
+        this.CAP = CAP;
+    }
+
     @Override
     public String toString() {
         return "ID: " + ID +"\n" +
