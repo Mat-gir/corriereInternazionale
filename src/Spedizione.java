@@ -67,6 +67,14 @@ public class Spedizione {
         this.cliente = cliente;
     }
 
+    public String getDestinatario(){
+        return destinatario;
+    }
+
+    public void setDestinatario(String destinatario){
+        this.destinatario = destinatario;
+    }
+
     @Override
     public String toString() {
         return "ID: " + ID +"\n" +

@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Corriere {
@@ -73,21 +74,23 @@ public class Corriere {
     }
 
     public void ricercaSpedizioneCliente(Cliente cliente){
-        if(spedizioni.containsValue(cliente)){
-            
-        }else{
-            System.out.println("Non esiste un pacco  registrato a questo mittente");
-        };
-
+        Iterator<Map.Entry<String, Spedizione>> iterator = spedizioni.entrySet().iterator();
+        while(iterator.hasNext()){
+            Spedizione spedizione = iterator.next().getValue();
+            if(spedizione.getCliente().equals(cliente)){
+                System.out.println(spedizione.toString());
+            }
+        }
     }
 
     public void ricercaSpedizioneDestinatario(String destinatario){
-        if(spedizioni.containsValue(destinatario)){
-            
-        }else{
-            System.out.println("Non esiste un pacco registrato a questo destinatario");
-        };
-
+        Iterator<Map.Entry<String, Spedizione>> iterator = spedizioni.entrySet().iterator();
+        while(iterator.hasNext()){
+            Spedizione spedizione = iterator.next().getValue();
+            if(spedizione.getDestinatario().equals(destinatario)){
+                System.out.println(spedizione.toString());
+            }
+        }
     }
 
     public void aggiornaSpedizione(String nuovoIndirizzo, Spedizione spedizione){
